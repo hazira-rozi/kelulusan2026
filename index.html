@@ -27,7 +27,9 @@
                         
                         <!-- HEADER KARTU (Gradient Background) -->
                         <div class="card-header border-0 text-center py-5 px-4" style="background: linear-gradient(135deg, #008080, #D4AF37);">
-                            <img src="assets/logo.png" alt="Logo SMKN 1 Singkarak" width="100" style="margin-bottom: 20px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
+                            
+                            <!-- Logo diperkecil (width 75) -->
+                            <img src="assets/logo.png" alt="Logo SMKN 1 Singkarak" width="75" style="margin-bottom: 20px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
                             
                             <h4 class="fw-bold mb-3 text-white" style="letter-spacing: 1px;">Pengumuman Kelulusan Siswa</h4>
                             <h2 class="fw-bolder mb-4 text-white text-uppercase" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">SMK Negeri 1 Singkarak</h2>
@@ -51,11 +53,15 @@
 
                             <!-- Bagian Pengecekan -->
                             <div id="cek-section" class="d-none py-2">
-                                <p class="text-secondary mb-3">Silakan masukkan <strong>Kode Kelulusan</strong> unik Anda.</p>
                                 
-                                <div class="input-group input-group-lg mb-3 mx-auto shadow-sm rounded" style="max-width: 500px;">
-                                    <input type="text" id="input-kode" class="form-control fs-6 border-end-0 custom-input" placeholder="CONTOH: RPL-ABC12" autocomplete="off" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()">
-                                    <button class="btn btn-primary px-4 fw-bold fs-6 custom-btn" type="button" onclick="cekKelulusan()">Cek Hasil</button>
+                                <!-- Wadah Input (Sembunyi saat hasil muncul) -->
+                                <div id="form-input-wrapper">
+                                    <p class="text-secondary mb-3">Silakan masukkan <strong>Kode Kelulusan</strong> unik Anda.</p>
+                                    
+                                    <div class="input-group input-group-lg mb-3 mx-auto shadow-sm rounded" style="max-width: 500px;">
+                                        <input type="text" id="input-kode" class="form-control fs-6 border-end-0 custom-input" placeholder="CONTOH: RPL-M5Q6W" autocomplete="off" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()">
+                                        <button class="btn btn-primary px-4 fw-bold fs-6 custom-btn" type="button" onclick="cekKelulusan()">Cek Hasil</button>
+                                    </div>
                                 </div>
                                 
                                 <!-- Area Hasil Kelulusan -->

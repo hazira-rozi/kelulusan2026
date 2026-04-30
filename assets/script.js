@@ -1,8 +1,7 @@
 // 1. KONFIGURASI WAKTU BUKA
-const waktuPengumuman = new Date("2026-04-04T10:00:00").getTime();
+const waktuPengumuman = new Date("2026-03-30T23:00:00").getTime();
 
 // 2. DATA SISWA (Kunci menggunakan Kode Acak)
-// Kode inilah yang harus dibagikan ke masing-masing siswa
 const dataSiswa = {
     // === UNIT LAYANAN WISATA (ULW) ===
     "ULW-A1B2C": { nama: "Angra Permata Desta", nisn: "0088291435", ttl: "Tanjung Alai, 19 Januari 2008", jurusan: "Unit Layanan Wisata", status: true },
@@ -33,7 +32,7 @@ const dataSiswa = {
     // === REKAYASA PERANGKAT LUNAK ===
     "RPL-M5Q6W": { nama: "Fahri Marsel Ramadhan", nisn: "0089540179", ttl: "Sulit Air, 24 September 2008", jurusan: "Rekayasa Perangkat Lunak", status: true },
     "RPL-E7R8T": { nama: "Kesha Novita", nisn: "0078017325", ttl: "Tanjung Alai, 03 November 2007", jurusan: "Rekayasa Perangkat Lunak", status: true },
-    "RPL-Y9U0I": { nama: "Sultan Muhammad Nabil", nisn: " ", ttl: "000", jurusan: "Rekayasa Perangkat Lunak", status: true },
+    "RPL-Y9U0I": { nama: "Sultan Muhammad Nabil", nisn: "000000000", ttl: "", jurusan: "Rekayasa Perangkat Lunak", status: true },
     "RPL-O1P2A": { nama: "MUHAMMAD RAFLY", nisn: "0081916352", ttl: "Solok, 21 Maret 2008", jurusan: "Rekayasa Perangkat Lunak", status: true },
     "RPL-S3D4F": { nama: "RAFSHAN JANI", nisn: "0075280898", ttl: "Tanjung Alai, 24 Agustus 2007", jurusan: "Rekayasa Perangkat Lunak", status: true }
 };
@@ -70,8 +69,10 @@ const interval = setInterval(function() {
 
 // 4. LOGIKA CEK KELULUSAN
 function cekKelulusan() {
-    const input = document.getElementById("input-kode").value.trim();
+    const inputField = document.getElementById("input-kode");
+    const input = inputField.value.trim().toUpperCase();
     const resultBox = document.getElementById("result");
+    const formWrapper = document.getElementById("form-input-wrapper");
     
     if (input === "") {
         alert("Kode kelulusan tidak boleh kosong!"); 
@@ -79,8 +80,20 @@ function cekKelulusan() {
     }
 
     const siswa = dataSiswa[input];
+    
+    // Sembunyikan form input dan tampilkan box hasil
+    formWrapper.classList.add("d-none");
     resultBox.classList.remove("d-none", "alert-success", "alert-danger");
     
+    // Tombol kembali (akan disisipkan di semua kondisi)
+    const tombolKembali = `
+        <div class="text-center mt-4">
+            <button class="btn btn-outline-secondary px-4 fw-bold rounded-pill" onclick="kembaliCek()">
+                &larr; Cek Kode Lainnya
+            </button>
+        </div>
+    `;
+
     if (siswa) {
         if (siswa.status === true) {
             resultBox.classList.add("alert-success");
@@ -111,6 +124,7 @@ function cekKelulusan() {
                         <span class="badge text-bg-success py-2 px-4 fs-5">LULUS</span>
                     </div>
                 </div>
+                ${tombolKembali}
             `;
             tembakConfetti();
         } else {
@@ -123,6 +137,7 @@ function cekKelulusan() {
                     <p class="fs-5 mb-3">Status : <span class="badge text-bg-danger py-2 px-3">TIDAK LULUS</span></p>
                     <p class="mb-0 text-muted">Tetap semangat dan jangan menyerah!</p>
                 </div>
+                ${tombolKembali}
             `;
         }
     } else {
@@ -130,13 +145,36 @@ function cekKelulusan() {
         resultBox.innerHTML = `
             <div class="p-2 text-center">
                 <p class="fs-5 mb-0 text-danger">Kode Kelulusan <strong>${input}</strong> tidak valid.</p>
-                <small class="text-muted">Pastikan Anda memasukkan kode dengan benar (perhatikan huruf besar/kecil dan tanda strip).</small>
+                <small class="text-muted">Pastikan Anda memasukkan kode dengan benar.</small>
             </div>
+            ${tombolKembali}
         `;
     }
+
+    // Auto-scroll ke hasil
+    setTimeout(() => {
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100); 
 }
 
-// 5. FUNGSI EFEK CONFETTI
+// 5. LOGIKA TOMBOL KEMBALI
+function kembaliCek() {
+    const resultBox = document.getElementById("result");
+    const formWrapper = document.getElementById("form-input-wrapper");
+    const inputField = document.getElementById("input-kode");
+
+    // Sembunyikan hasil, tampilkan form kembali
+    resultBox.classList.add("d-none");
+    formWrapper.classList.remove("d-none");
+    
+    // Kosongkan form input
+    inputField.value = "";
+    
+    // Kembalikan fokus kursor ke form input
+    inputField.focus();
+}
+
+// 6. FUNGSI EFEK CONFETTI
 function tembakConfetti() {
     var duration = 4 * 1000;
     var animationEnd = Date.now() + duration;
