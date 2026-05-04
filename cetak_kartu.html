@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cetak Kartu Kode Kelulusan</title>
+    <style>
+        /* CSS KHUSUS UNTUK CETAK DAN TAMPILAN KARTU */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef; /* Warna latar luar layar */
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Tombol Cetak (Akan disembunyikan saat di-print) */
+        .print-btn {
+            display: block;
+            width: 200px;
+            margin: 0 auto 30px auto;
+            padding: 12px 20px;
+            background-color: #008080;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .print-btn:hover { background-color: #006666; }
+
+        /* Container Grid Kartu */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px; /* Jarak antar kartu */
+            justify-content: center;
+            max-width: 21cm; /* Patokan lebar kertas A4 */
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Desain Individual Kartu */
+        .student-card {
+            width: 8.5cm; /* Standar lebar kartu nama/ID */
+            height: 5.5cm; /* Standar tinggi kartu */
+            background-image: url('assets/bg.png'); /* Seamless pattern */
+            background-repeat: repeat;
+            border: 1px dashed #ccc; /* Garis potong */
+            position: relative;
+            box-sizing: border-box;
+            
+            /* WAJIB agar background tercetak di PDF */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact; 
+        }
+
+        /* Overlay putih transparan agar teks terbaca */
+        .card-overlay {
+            background-color: rgba(255, 255, 255, 0.85); 
+            width: 100%;
+            height: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Kop Kartu */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-bottom: 2px solid #008080;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .header img { width: 35px; }
+        .header-text {
+            text-align: left;
+            line-height: 1.1;
+        }
+        .header-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #008080;
+            margin: 0;
+        }
+        .header-subtitle {
+            font-size: 8px;
+            color: #555;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Teks Siswa */
+        .student-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin: 0 0 2px 0;
+            text-transform: uppercase;
+        }
+        .student-jurusan {
+            font-size: 10px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        /* Kotak Kode Unik */
+        .code-box {
+            background-color: #fff;
+            border: 2px dashed #D4AF37; /* Warna emas */
+            color: #008080; /* Warna hijau logo */
+            padding: 5px 20px;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            border-radius: 6px;
+        }
+
+        /* PENGATURAN SAAT DI-PRINT / EKSPOR PDF */
+        @media print {
+            body { 
+                background-color: white; 
+                padding: 0; 
+                margin: 0; 
+            }
+            .print-btn { display: none; } /* Sembunyikan tombol cetak */
+            .card-container { 
+                box-shadow: none; 
+                padding: 0; 
+                gap: 10px;
+                max-width: 100%; 
+            }
+            .student-card {
+                page-break-inside: avoid; /* Mencegah kartu terpotong di halaman baru */
+                border: 1px solid #999; /* Ubah dashed jadi solid tipis saat dicetak */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol untuk memicu dialog Print/PDF -->
+    <button class="print-btn no-print" onclick="window.print()">Simpan sebagai PDF / Cetak</button>
+
+    <!-- Tempat kartu akan di-generate oleh JavaScript -->
+    <div class="card-container" id="card-container"></div>
+
+    <script>
+        // DATA SISWA (Terbaru sesuai data yang Anda berikan)
+        const dataSiswa = {
+            // === UNIT LAYANAN WISATA (ULW) ===
+            "ULW-A1B2C": { nama: "Angra Permata Desta", nisn: "0088291435", ttl: "Tanjung Alai, 19 Januari 2008", jurusan: "Unit Layanan Wisata", status: true },
+            "ULW-X9Y8Z": { nama: "Dara Atrilani", nisn: "0073590125", ttl: "Tanjung Alai, 02 Agustus 2007", jurusan: "Unit Layanan Wisata", status: true },
+            "ULW-M4N5P": { nama: "David Saputra", nisn: "0078149378", ttl: "Tanjung Alai, 09 November 2007", jurusan: "Unit Layanan Wisata", status: true },
+            "ULW-Q1W2E": { nama: "Fahri Yuarifta", nisn: "0081048487", ttl: "Tanjung Alai, 28 Mei 2008", jurusan: "Unit Layanan Wisata", status: true },
+            "ULW-R3T4Y": { nama: "Muhammad Zikri", nisn: "0087775606", ttl: "Tanjung Alai, 02 Juli 2008", jurusan: "Unit Layanan Wisata", status: true },
+            "ULW-U5I6O": { nama: "NADYA ISELA", nisn: "0072370226", ttl: "BENGKULU, 17 Juni 2007", jurusan: "Unit Layanan Wisata", status: true },
+
+            // === AKUNTANSI ===
+            "AKL-P7A8S": { nama: "INSAN SAKINAH", nisn: "0085576666", ttl: "PEKAN BARU, 05 Mei 2008", jurusan: "Akuntansi", status: true },
+            "AKL-D9F0G": { nama: "Maharani Putri Rahayu", nisn: "0084342182", ttl: "Tanjung Alai, 09 Januari 2008", jurusan: "Akuntansi", status: true },
+            "AKL-H1J2K": { nama: "Nazila Ramesya Alya", nisn: "0084140720", ttl: "Solok, 10 Juni 2008", jurusan: "Akuntansi", status: true },
+            "AKL-L3Z4X": { nama: "RIDHO MAULANA", nisn: "0088313740", ttl: "Jakarta, 16 April 2008", jurusan: "Akuntansi", status: true },
+            "AKL-C5V6B": { nama: "Tika Oktavia", nisn: "0071557389", ttl: "Tanjung Alai, 07 November 2007", jurusan: "Akuntansi", status: true },
+            "AKL-N7M8Q": { nama: "Vixi Radiathul Fitri", nisn: "0074450728", ttl: "Sulit Air, 14 Oktober 2007", jurusan: "Akuntansi", status: true },
+
+            // === MANAJEMEN PERKANTORAN ===
+            "MPLB-W9E0R": { nama: "Afifatun Zaskiah", nisn: "0087971049", ttl: "Cilegon, 03 Februari 2008", jurusan: "Manajemen Perkantoran", status: true },
+            "MPLB-T1Y2U": { nama: "Aidil Fikri", nisn: "0053828418", ttl: "Tanjung Alai, 04 November 2005", jurusan: "Manajemen Perkantoran", status: true },
+            "MPLB-I3O4P": { nama: "Fuji Lestari", nisn: "0078019563", ttl: "Tanjung Alai, 11 November 2007", jurusan: "Manajemen Perkantoran", status: true },
+            "MPLB-A5S6D": { nama: "Nikhen Agustya", nisn: "0089823232", ttl: "Tanjung Alai, 28 Agustus 2008", jurusan: "Manajemen Perkantoran", status: true },
+            "MPLB-F7G8H": { nama: "RIFKA NAFISA", nisn: "0078806545", ttl: "TANJUNG ALAI, 18 Desember 2007", jurusan: "Manajemen Perkantoran", status: true },
+            "MPLB-J9K0L": { nama: "Shaskia Ananda Putri", nisn: "0071629970", ttl: "Tanjung Alai, 15 Agustus 2007", jurusan: "Manajemen Perkantoran", status: true },
+            "MPLB-Z1X2C": { nama: "Sindi Vairani", nisn: "0089342816", ttl: "Tanjung Alai, 05 Agustus 2008", jurusan: "Manajemen Perkantoran", status: true },
+            "MPLB-V3B4N": { nama: "Siska Ramadani", nisn: "0078569885", ttl: "Rangkasbitung-Lebak, 23 September 2007", jurusan: "Manajemen Perkantoran", status: true },
+
+            // === REKAYASA PERANGKAT LUNAK ===
+            "RPL-M5Q6W": { nama: "Fahri Marsel Ramadhan", nisn: "0089540179", ttl: "Sulit Air, 24 September 2008", jurusan: "Rekayasa Perangkat Lunak", status: true },
+            "RPL-E7R8T": { nama: "Kesha Novita", nisn: "0078017325", ttl: "Tanjung Alai, 03 November 2007", jurusan: "Rekayasa Perangkat Lunak", status: true },
+            "RPL-Y9U0I": { nama: "Sultan Muhammad Nabil", nisn: "000000000", ttl: "", jurusan: "Rekayasa Perangkat Lunak", status: true },
+            "RPL-O1P2A": { nama: "MUHAMMAD RAFLY", nisn: "0081916352", ttl: "Solok, 21 Maret 2008", jurusan: "Rekayasa Perangkat Lunak", status: true },
+            "RPL-S3D4F": { nama: "RAFSHAN JANI", nisn: "0075280898", ttl: "Tanjung Alai, 24 Agustus 2007", jurusan: "Rekayasa Perangkat Lunak", status: true }
+        };
+
+        const container = document.getElementById('card-container');
+        let kartuHTML = '';
+
+        // Melakukan perulangan untuk setiap data siswa dan membuat HTML kartunya
+        for (const [kode, siswa] of Object.entries(dataSiswa)) {
+            kartuHTML += `
+                <div class="student-card">
+                    <div class="card-overlay">
+                        
+                        <div class="header">
+                            <img src="assets/logo.png" alt="Logo">
+                            <div class="header-text">
+                                <p class="header-title">SMKN 1 SINGKARAK</p>
+                                <p class="header-subtitle">KODE AKSES PENGUMUMAN LULUS</p>
+                            </div>
+                        </div>
+
+                        <p class="student-name">${siswa.nama}</p>
+                        <p class="student-jurusan">${siswa.jurusan}</p>
+                        
+                        <div class="code-box">${kode}</div>
+                        
+                    </div>
+                </div>
+            `;
+        }
+
+        // Memasukkan semua kartu ke dalam container di HTML
+        container.innerHTML = kartuHTML;
+    </script>
+</body>
+</html>

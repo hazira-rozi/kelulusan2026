@@ -1,5 +1,5 @@
 // 1. KONFIGURASI WAKTU BUKA
-const waktuPengumuman = new Date("2026-03-30T23:00:00").getTime();
+const waktuPengumuman = new Date("2026-05-04T20:30:00").getTime();
 
 // 2. DATA SISWA (Kunci menggunakan Kode Acak)
 const dataSiswa = {
