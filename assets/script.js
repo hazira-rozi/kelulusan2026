@@ -4,37 +4,37 @@ const waktuPengumuman = new Date("2026-05-04T20:30:00").getTime();
 // 2. DATA SISWA (Kunci menggunakan Kode Acak)
 const dataSiswa = {
     // === UNIT LAYANAN WISATA (ULW) ===
-    "ULW-A1B2C": { nama: "Angra Permata Desta", nisn: "0088291435", ttl: "Tanjung Alai, 19 Januari 2008", jurusan: "Unit Layanan Wisata", status: true },
-    "ULW-X9Y8Z": { nama: "Dara Atrilani", nisn: "0073590125", ttl: "Tanjung Alai, 02 Agustus 2007", jurusan: "Unit Layanan Wisata", status: true },
-    "ULW-M4N5P": { nama: "David Saputra", nisn: "0078149378", ttl: "Tanjung Alai, 09 November 2007", jurusan: "Unit Layanan Wisata", status: true },
-    "ULW-Q1W2E": { nama: "Fahri Yuarifta", nisn: "0081048487", ttl: "Tanjung Alai, 28 Mei 2008", jurusan: "Unit Layanan Wisata", status: true },
-    "ULW-R3T4Y": { nama: "Muhammad Zikri", nisn: "0087775606", ttl: "Tanjung Alai, 02 Juli 2008", jurusan: "Unit Layanan Wisata", status: true },
-    "ULW-U5I6O": { nama: "NADYA ISELA", nisn: "0072370226", ttl: "BENGKULU, 17 Juni 2007", jurusan: "Unit Layanan Wisata", status: true },
+    "ULW-A1B2C": { nama: "Angra Permata Desta", nisn: "0088291435", ttl: "Tanjung Alai, 19 Januari 2008", jurusan: "Unit Layanan Wisata", status: true, skl:"https://drive.google.com/open?id=17lc-kSCUcOay2BKXRWOQGerC4vxdgCRP" },
+    "ULW-X9Y8Z": { nama: "Dara Atrilani", nisn: "0073590125", ttl: "Tanjung Alai, 02 Agustus 2007", jurusan: "Unit Layanan Wisata", status: true, skl:"https://drive.google.com/open?id=19KlpPbUkqvpHecqVslKmEU-3yXg_cZ7D" },
+    "ULW-M4N5P": { nama: "David Saputra", nisn: "0078149378", ttl: "Tanjung Alai, 09 November 2007", jurusan: "Unit Layanan Wisata", status: true, skl:"https://drive.google.com/open?id=1ne5RS_JeKsIgHQWVeM-GvwOXAuBgcOmx" },
+    "ULW-Q1W2E": { nama: "Fahri Yuarifta", nisn: "0081048487", ttl: "Tanjung Alai, 28 Mei 2008", jurusan: "Unit Layanan Wisata", status: true, skl:"https://drive.google.com/open?id=1STSMMv7rBOoD8bJBeiXFpYZ4WrdVPNMY" },
+    "ULW-R3T4Y": { nama: "Muhammad Zikri", nisn: "0087775606", ttl: "Tanjung Alai, 02 Juli 2008", jurusan: "Unit Layanan Wisata", status: true, skl:"https://drive.google.com/open?id=1vjmLeWXnqgK_RkhOB-VpfyJ1Do2p8pya" },
+    "ULW-U5I6O": { nama: "NADYA ISELA", nisn: "0072370226", ttl: "BENGKULU, 17 Juni 2007", jurusan: "Unit Layanan Wisata", status: true, skl:"https://drive.google.com/open?id=11swXNaFMTp-zyi7Us3f_0oB6bcUb-4UT" },
 
     // === AKUNTANSI ===
-    "AKL-P7A8S": { nama: "INSAN SAKINAH", nisn: "0085576666", ttl: "PEKAN BARU, 05 Mei 2008", jurusan: "Akuntansi", status: true },
-    "AKL-D9F0G": { nama: "Maharani Putri Rahayu", nisn: "0084342182", ttl: "Tanjung Alai, 09 Januari 2008", jurusan: "Akuntansi", status: true },
-    "AKL-H1J2K": { nama: "Nazila Ramesya Alya", nisn: "0084140720", ttl: "Solok, 10 Juni 2008", jurusan: "Akuntansi", status: true },
-    "AKL-L3Z4X": { nama: "RIDHO MAULANA", nisn: "0088313740", ttl: "Jakarta, 16 April 2008", jurusan: "Akuntansi", status: true },
-    "AKL-C5V6B": { nama: "Tika Oktavia", nisn: "0071557389", ttl: "Tanjung Alai, 07 November 2007", jurusan: "Akuntansi", status: true },
-    "AKL-N7M8Q": { nama: "Vixi Radiathul Fitri", nisn: "0074450728", ttl: "Sulit Air, 14 Oktober 2007", jurusan: "Akuntansi", status: true },
+    "AKL-P7A8S": { nama: "INSAN SAKINAH", nisn: "0085576666", ttl: "PEKAN BARU, 05 Mei 2008", jurusan: "Akuntansi", status: true, skl:"https://drive.google.com/open?id=1OSuJUT2PlUDJEYJz983x5RypJETjLtwK" },
+    "AKL-D9F0G": { nama: "Maharani Putri Rahayu", nisn: "0084342182", ttl: "Tanjung Alai, 09 Januari 2008", jurusan: "Akuntansi", status: true, skl:"https://drive.google.com/open?id=1uDwMhcsejvd4A3ZcolDQ4PwALWNcBtlK" },
+    "AKL-H1J2K": { nama: "Nazila Ramesya Alya", nisn: "0084140720", ttl: "Solok, 10 Juni 2008", jurusan: "Akuntansi", status: true, skl:"https://drive.google.com/open?id=1_xRbUQ-MuwtAk3Dc8T5sPjbO-jtmfGzp" },
+    "AKL-L3Z4X": { nama: "RIDHO MAULANA", nisn: "0088313740", ttl: "Jakarta, 16 April 2008", jurusan: "Akuntansi", status: true, skl:"https://drive.google.com/open?id=1Njpmi0xMGfa2ItK9IZoCgIc3ts5b0ZQ_" },
+    "AKL-C5V6B": { nama: "Tika Oktavia", nisn: "0071557389", ttl: "Tanjung Alai, 07 November 2007", jurusan: "Akuntansi", status: true, skl:"https://drive.google.com/open?id=1K53STwwzQiZMXDs74uDz4XHWRspOIS0f" },
+    "AKL-N7M8Q": { nama: "Vixi Radiathul Fitri", nisn: "0074450728", ttl: "Sulit Air, 14 Oktober 2007", jurusan: "Akuntansi", status: true, skl:"https://drive.google.com/open?id=11dhvi86UCYrcLFIRbqI8rQgSByzgoqWE" },
 
     // === MANAJEMEN PERKANTORAN ===
-    "MPLB-W9E0R": { nama: "Afifatun Zaskiah", nisn: "0087971049", ttl: "Cilegon, 03 Februari 2008", jurusan: "Manajemen Perkantoran", status: true },
-    "MPLB-T1Y2U": { nama: "Aidil Fikri", nisn: "0053828418", ttl: "Tanjung Alai, 04 November 2005", jurusan: "Manajemen Perkantoran", status: true },
-    "MPLB-I3O4P": { nama: "Fuji Lestari", nisn: "0078019563", ttl: "Tanjung Alai, 11 November 2007", jurusan: "Manajemen Perkantoran", status: true },
-    "MPLB-A5S6D": { nama: "Nikhen Agustya", nisn: "0089823232", ttl: "Tanjung Alai, 28 Agustus 2008", jurusan: "Manajemen Perkantoran", status: true },
-    "MPLB-F7G8H": { nama: "RIFKA NAFISA", nisn: "0078806545", ttl: "TANJUNG ALAI, 18 Desember 2007", jurusan: "Manajemen Perkantoran", status: true },
-    "MPLB-J9K0L": { nama: "Shaskia Ananda Putri", nisn: "0071629970", ttl: "Tanjung Alai, 15 Agustus 2007", jurusan: "Manajemen Perkantoran", status: true },
-    "MPLB-Z1X2C": { nama: "Sindi Vairani", nisn: "0089342816", ttl: "Tanjung Alai, 05 Agustus 2008", jurusan: "Manajemen Perkantoran", status: true },
-    "MPLB-V3B4N": { nama: "Siska Ramadani", nisn: "0078569885", ttl: "Rangkasbitung-Lebak, 23 September 2007", jurusan: "Manajemen Perkantoran", status: true },
+    "MPLB-W9E0R": { nama: "Afifatun Zaskiah", nisn: "0087971049", ttl: "Cilegon, 03 Februari 2008", jurusan: "Manajemen Perkantoran", status: true, skl:"https://drive.google.com/open?id=1ojbR_tcn2CEy1-s8MkGJMrGw492b2fDI" },
+    "MPLB-T1Y2U": { nama: "Aidil Fikri", nisn: "0053828418", ttl: "Tanjung Alai, 04 November 2005", jurusan: "Manajemen Perkantoran", status: true, skl:"https://drive.google.com/open?id=1mVxTO0_Q1fl3GnIR515VI4vEAM3ziyQb" },
+    "MPLB-I3O4P": { nama: "Fuji Lestari", nisn: "0078019563", ttl: "Tanjung Alai, 11 November 2007", jurusan: "Manajemen Perkantoran", status: true, skl:"https://drive.google.com/open?id=1Guz9refzmdiy6LsqccxxKgkeTs_TdIDv" },
+    "MPLB-A5S6D": { nama: "Nikhen Agustya", nisn: "0089823232", ttl: "Tanjung Alai, 28 Agustus 2008", jurusan: "Manajemen Perkantoran", status: true, skl:"https://drive.google.com/open?id=1Ik_hDAqPvxS76IKMLrU_xwtOY6IR6xfY" },
+    "MPLB-F7G8H": { nama: "RIFKA NAFISA", nisn: "0078806545", ttl: "TANJUNG ALAI, 18 Desember 2007", jurusan: "Manajemen Perkantoran", status: true, skl:"https://drive.google.com/open?id=1_-DKQG-NX5DoUGr6d97XSwsnWz-uDmnk" },
+    "MPLB-J9K0L": { nama: "Shaskia Ananda Putri", nisn: "0071629970", ttl: "Tanjung Alai, 15 Agustus 2007", jurusan: "Manajemen Perkantoran", status: true, skl:"https://drive.google.com/open?id=1sQ0ZjK26jmgYgnlQ4y5ILsQWezMi-jo5" },
+    "MPLB-Z1X2C": { nama: "Sindi Vairani", nisn: "0089342816", ttl: "Tanjung Alai, 05 Agustus 2008", jurusan: "Manajemen Perkantoran", status: true, skl:"https://drive.google.com/open?id=1CZ4RWWyUdGc_-xtfIMN7EnwoENoJOAHX" },
+    "MPLB-V3B4N": { nama: "Siska Ramadani", nisn: "0078569885", ttl: "Rangkasbitung-Lebak, 23 September 2007", jurusan: "Manajemen Perkantoran", status: true, skl:"https://drive.google.com/open?id=13E0157Yf_2UQRMAIEfYquPI766xvU3yl" },
 
     // === REKAYASA PERANGKAT LUNAK ===
-    "RPL-M5Q6W": { nama: "Fahri Marsel Ramadhan", nisn: "0089540179", ttl: "Sulit Air, 24 September 2008", jurusan: "Rekayasa Perangkat Lunak", status: true },
-    "RPL-E7R8T": { nama: "Kesha Novita", nisn: "0078017325", ttl: "Tanjung Alai, 03 November 2007", jurusan: "Rekayasa Perangkat Lunak", status: true },
-    "RPL-Y9U0I": { nama: "Sultan Muhammad Nabil", nisn: "000000000", ttl: "", jurusan: "Rekayasa Perangkat Lunak", status: true },
-    "RPL-O1P2A": { nama: "MUHAMMAD RAFLY", nisn: "0081916352", ttl: "Solok, 21 Maret 2008", jurusan: "Rekayasa Perangkat Lunak", status: true },
-    "RPL-S3D4F": { nama: "RAFSHAN JANI", nisn: "0075280898", ttl: "Tanjung Alai, 24 Agustus 2007", jurusan: "Rekayasa Perangkat Lunak", status: true }
+    "RPL-M5Q6W": { nama: "Fahri Marsel Ramadhan", nisn: "0089540179", ttl: "Sulit Air, 24 September 2008", jurusan: "Rekayasa Perangkat Lunak", status: true, skl:"https://drive.google.com/open?id=1yM5n0QAgEgaq5X82xRrXgVHwOhDHZqNp" },
+    "RPL-E7R8T": { nama: "Kesha Novita", nisn: "0078017325", ttl: "Tanjung Alai, 03 November 2007", jurusan: "Rekayasa Perangkat Lunak", status: true, skl:"https://drive.google.com/open?id=1y20zNEVjAx9oswBIw1xtwFpbMYhaXwfT" },
+    "RPL-Y9U0I": { nama: "Sultan Muhammad Nabil", nisn: "000000000", ttl: "", jurusan: "Rekayasa Perangkat Lunak", status: true, skl:"https://drive.google.com/open?id=1VxHcnLK8C9ZdCT9bFTdo8ccfZNV7jfjl" },
+    "RPL-O1P2A": { nama: "MUHAMMAD RAFLY", nisn: "0081916352", ttl: "Solok, 21 Maret 2008", jurusan: "Rekayasa Perangkat Lunak", status: true, skl:"https://drive.google.com/open?id=1iyOnSjtd9i1YnS1itPjO1TmT5BxThFoK" },
+    "RPL-S3D4F": { nama: "RAFSHAN JANI", nisn: "0075280898", ttl: "Tanjung Alai, 24 Agustus 2007", jurusan: "Rekayasa Perangkat Lunak", status: true, skl:"https://drive.google.com/open?id=1VbkU3GW0yKe4pSg4gk4t5_CvoWsHBHuG" }
 };
 
 // 3. LOGIKA HITUNG MUNDUR
@@ -122,6 +122,10 @@ function cekKelulusan() {
                     <div class="mt-3 p-3 bg-white rounded shadow-sm d-flex align-items-center justify-content-between border border-success">
                         <span class="fw-bold text-secondary mb-0 fs-5">Status Kelulusan</span>
                         <span class="badge text-bg-success py-2 px-4 fs-5">LULUS</span>
+                    </div>
+                    <div class="mt-3 p-3 bg-white rounded shadow-sm d-flex align-items-center justify-content-between border border-success">
+                        <span class="fw-bold text-secondary mb-0 fs-5">Surat Keterangan Kelulusan</span>
+                        <a href="${siswa.skl}"><span class="badge text-bg-success py-2 px-4 fs-5"><i class="fa-solid fa-download"></i> Unduh</span></a>
                     </div>
                 </div>
                 ${tombolKembali}
